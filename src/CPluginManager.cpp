@@ -345,6 +345,12 @@ namespace PluginManager
         string sProjectDir = gStartupInitParams.szProjectDllDir;
 
         m_sPluginsDirectory = sProjectDir + PATH_SEPERATOR + PLUGIN_FOLDER;
+
+        if ( !isAbsolute( m_sPluginsDirectory ) )
+        {
+            m_sPluginsDirectory = m_sRootDirectory + PATH_SEPERATOR + m_sPluginsDirectory;
+        }
+
         // ~OMGGOMB
         assert( gEnv && gEnv->pCryPak );
 
