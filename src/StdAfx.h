@@ -2,6 +2,10 @@
 
 #pragma once
 
+// OMGGOMB: CEV
+#define eCryModule eCryM_Game
+// ~OMGGOMB
+
 // Insert your headers here
 #include <platform.h>
 #include <algorithm>
@@ -21,6 +25,10 @@
 #include <ILog.h>
 #include <IGameplayRecorder.h>
 #include <ISerialize.h>
+
+// OMMGOMB: CEV
+#include <CryWindows.h>
+// ~OMGGOMB
 
 #ifndef _FORCEDLL
 #define _FORCEDLL

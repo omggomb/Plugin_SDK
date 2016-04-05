@@ -2,7 +2,7 @@
 
 #include <StdAfx.h>
 #include "CPluginManager.h"
-#include <platform_impl.h>
+#include <platform_impl.inl> // OMGGOMB: CEV Change to *.inl from *.h
 #include <Nodes/G2FlowBaseNode.h>
 
 namespace PluginManager
@@ -21,7 +21,6 @@ extern "C"
         return modulePlugin.GetBase();
     }
 }
-
 
 // Needed for module specific flow node
 CG2AutoRegFlowNodeBase* CG2AutoRegFlowNodeBase::m_pFirst = 0; //!< pointer to first flownode inside this plugin

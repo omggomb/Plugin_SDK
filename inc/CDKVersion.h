@@ -42,14 +42,14 @@
 ILINE SOutputPortConfig OutputPortConfig_Null()
 {
     ScopedSwitchToGlobalHeap useGlobalHeap;
-    SOutputPortConfig result = {NULL, NULL, NULL, 0};
+    SOutputPortConfig result = { NULL, NULL, NULL, 0 };
     return result;
 }
 
 ILINE SInputPortConfig InputPortConfig_Null()
 {
     ScopedSwitchToGlobalHeap useGlobalHeap;
-    SInputPortConfig result = {NULL, NULL, NULL, NULL, TFlowInputData( 0, false )};
+    SInputPortConfig result = { NULL, NULL, NULL, NULL, TFlowInputData( 0, false ) };
     return result;
 }
 #endif
@@ -64,7 +64,13 @@ ILINE SInputPortConfig InputPortConfig_Null()
 #define eFLPriority_Menu FRAMEWORKLISTENERPRIORITY_MENU
 
 #ifndef MAX_PLAYER_LIMIT
+// OMGGOMB: CEV compatibility
+#if CDK_VERSION >= 500
+#include <ICryLobby.h>
+#else
 #include <ICrysis3Lobby.h>
+#endif
+// ~OMGGOMB
 #define MAX_PLAYER_LIMIT DETAILED_SESSION_MAX_PLAYERS
 #endif
 
