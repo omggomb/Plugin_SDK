@@ -3,7 +3,7 @@
 #include <StdAfx.h>
 #include <IPluginManager.h>
 #include "CPlugin[!output PROJECT_NAME_SAFE].h"
-#include <platform_impl.h>
+#include <platform_impl.inl>
 #include <Nodes/G2FlowBaseNode.h>
 
 extern "C"

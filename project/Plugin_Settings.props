@@ -7,7 +7,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup>
     <ClCompile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\inc;$(ProjectDir)..\..\Libs;$(ProjectDir)..\..\Libs\yasli;$(ProjectDir)..\src;$(ProjectDir)..\..\SDKs;$(ProjectDir)..\..\Plugin_SDK\inc;$(ProjectDir)..\..\SDKs\boost;$(ProjectDir)..\..\SDKs\yasli;$(DXSDK_DIR)Include\;$(ProjectDir)..\..\CryEngine\CryCommon;$(ProjectDir)..\..\CryEngine\CryAction;$(ProjectDir)..\..\Game\GameDll;$(ProjectDir)..\..\GameSDK\GameDll;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(CRYENGINEROOT)\Code\CryEngine\CryAction;$(CRYENGINEROOT)\Code\CryEngine\CryCommon;$(CRYENGINEROOT)\Code\SDKs\boost;$(CRYENGINEROOT)\Code\SDKs\yasli;$(CRYENGINEROOT)\Code\Libs\yasli;$(ProjectDir)..\inc;$(ProjectDir)..\..\Libs;$(ProjectDir)..\..\Libs\yasli;$(ProjectDir)..\src;$(ProjectDir)..\..\SDKs;$(ProjectDir)..\..\Plugin_SDK\inc;$(ProjectDir)..\..\SDKs\boost;$(ProjectDir)..\..\SDKs\yasli;$(DXSDK_DIR)Include\;$(ProjectDir)..\..\CryEngine\CryCommon;$(ProjectDir)..\..\CryEngine\CryAction;$(ProjectDir)..\..\Game\GameDll;$(ProjectDir)..\..\Game\GameDll\game;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>$(DXSDK_DIR)Lib\$(PlatformShortName);$(DXSDK_DIR)Lib\$(Platform);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
