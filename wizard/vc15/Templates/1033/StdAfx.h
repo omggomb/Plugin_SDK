@@ -2,6 +2,7 @@
 
 #pragma once
 
+#define eCryModule eCryM_Game
 // Insert your headers here
 #include <platform.h>
 #include <algorithm>
@@ -21,6 +22,9 @@
 #include <ILog.h>
 #include <IGameplayRecorder.h>
 #include <ISerialize.h>
+
+
+#include <CryWindows.h>
 
 #ifndef _FORCEDLL
 #define _FORCEDLL

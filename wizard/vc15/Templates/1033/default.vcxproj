@@ -87,37 +87,37 @@
         <LinkIncremental>false</LinkIncremental>
         <OutDir>$(ProjectDir)..\..\..\bin\win_x86\Plugins\$(ProjectName)\</OutDir>
         <TargetName>Plugin_$(ProjectName)</TargetName>
-        <LocalDebuggerCommand>$(OutDir)\..\..\..\..\Game.bat</LocalDebuggerCommand>
+        <LocalDebuggerCommand>$(CRYENGINEROOT)\bin\win_x86\GameSDK.exe</LocalDebuggerCommand>
         <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
 		<IntDir>$(ProjectDir)\Intermediate\$(Configuration)\$(Platform)\</IntDir>
-		<LocalDebuggerWorkingDirectory>$(ProjectDir)..\..\..\</LocalDebuggerWorkingDirectory>
+		<LocalDebuggerCommandArguments>-projectroot "..\..\.." -projectdlldir "bin\win_x32"</LocalDebuggerCommandArguments>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
         <LinkIncremental>false</LinkIncremental>
         <OutDir>$(ProjectDir)..\..\..\bin\win_x86\Plugins\$(ProjectName)\</OutDir>
         <TargetName>Plugin_$(ProjectName)</TargetName>
-        <LocalDebuggerCommand>$(OutDir)\..\..\..\..\Game.bat</LocalDebuggerCommand>
+        <LocalDebuggerCommand>$(CRYENGINEROOT)\bin\win_x86\GameSDK.exe</LocalDebuggerCommand>
         <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
 		<IntDir>$(ProjectDir)\Intermediate\$(Configuration)\$(Platform)\</IntDir>
-		<LocalDebuggerWorkingDirectory>$(ProjectDir)..\..\..\</LocalDebuggerWorkingDirectory>
+		<LocalDebuggerCommandArguments>-projectroot "..\..\.." -projectdlldir "bin\win_x32"</LocalDebuggerCommandArguments>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
         <LinkIncremental>false</LinkIncremental>
         <OutDir>$(ProjectDir)..\..\..\bin\win_x64\Plugins\$(ProjectName)\</OutDir>
         <TargetName>Plugin_$(ProjectName)</TargetName>
-        <LocalDebuggerCommand>$(OutDir)\..\..\..\..\Game.bat</LocalDebuggerCommand>
+        <LocalDebuggerCommand>$(CRYENGINEROOT)\bin\win_x64\GameSDK.exe</LocalDebuggerCommand>
         <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
 		<IntDir>$(ProjectDir)\Intermediate\$(Configuration)\$(Platform)\</IntDir>
-		<LocalDebuggerWorkingDirectory>$(ProjectDir)..\..\..\</LocalDebuggerWorkingDirectory>
+		<LocalDebuggerCommandArguments>-projectroot "..\..\.." -projectdlldir "bin\win_x64"</LocalDebuggerCommandArguments>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
         <LinkIncremental>false</LinkIncremental>
         <OutDir>$(ProjectDir)..\..\..\bin\win_x64\Plugins\$(ProjectName)\</OutDir>
         <TargetName>Plugin_$(ProjectName)</TargetName>
-        <LocalDebuggerCommand>$(OutDir)\..\..\..\..\Game.bat</LocalDebuggerCommand>
+        <LocalDebuggerCommand>$(CRYENGINEROOT)\bin\win_x64\GameSDK.exe</LocalDebuggerCommand>
         <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
 		<IntDir>$(ProjectDir)\Intermediate\$(Configuration)\$(Platform)\</IntDir>
-		<LocalDebuggerWorkingDirectory>$(ProjectDir)..\..\..\</LocalDebuggerWorkingDirectory>
+		<LocalDebuggerCommandArguments>-projectroot "..\..\.." -projectdlldir "bin\win_x64"</LocalDebuggerCommandArguments>
     </PropertyGroup>
     
     <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

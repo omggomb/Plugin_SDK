@@ -116,7 +116,6 @@ namespace PluginManager
             return;
         }
 
-
         // Syntax: <filter> <type (1:frames, 2:seconds)> <amount> <commands...>
         //         0        1                             2       3...
 
@@ -136,7 +135,7 @@ namespace PluginManager
         string sText = sCommandLine.Mid( nLenCmd );
 
         // read over the parameters
-        size_t nOffset = sText.find_first_of( ' ' )   + 1;
+        size_t nOffset = sText.find_first_of( ' ' ) + 1;
         nOffset = sText.find_first_of( ' ', nOffset ) + 1;
         nOffset = sText.find_first_of( ' ', nOffset ) + 1;
 
@@ -225,7 +224,7 @@ namespace PluginManager
         gPluginManager = NULL;
     }
 
-    typedef void ( *updateFunc )( IEntitySystem* );
+    typedef void( *updateFunc )( IEntitySystem* );
     static updateFunc fpoUpdateFunc = nullptr;
     void __stdcall hookedUpdate( IEntitySystem* THIS )
     {
@@ -244,7 +243,7 @@ namespace PluginManager
         if ( bHook )
         {
             void** vt = getVT( gEnv->pEntitySystem );
-            fpoUpdateFunc = ( updateFunc ) vt[nNo];
+            fpoUpdateFunc = ( updateFunc )vt[nNo];
             Mhook_SetHook( ( PVOID* )&fpoUpdateFunc, hookedUpdate );
         }
 
@@ -310,7 +309,7 @@ namespace PluginManager
             char* sTempPath = new char[nPathLen + 1];
             GetCurrentDirectory( nPathLen + 1, sTempPath );
             sCurrentDirectory = sTempPath;
-            delete [] sTempPath;
+            delete[] sTempPath;
         }
 
         // The root should be the current directory
@@ -342,8 +341,11 @@ namespace PluginManager
         m_sBinaryDirectory = PathUtil::RemoveSlash( PathUtil::GetPath( sDirectory ) );
 
         // The plugins folders lies within binary directory
-        m_sPluginsDirectory = m_sBinaryDirectory + PATH_SEPERATOR + PLUGIN_FOLDER;
+        // OMGGOMB: CEV Changed to project dir
+        string sProjectDir = gStartupInitParams.szProjectDllDir;
 
+        m_sPluginsDirectory = sProjectDir + PATH_SEPERATOR + PLUGIN_FOLDER;
+        // ~OMGGOMB
         assert( gEnv && gEnv->pCryPak );
 
         // create plugin directory if it doesn't exist
@@ -404,7 +406,7 @@ namespace PluginManager
             // Register the plugin manager itself (plugin manager only, plugins don't need to do this)
             LogAlways( "Plugin Manager initialized!" );
 
-            m_Plugins[ GetName() ] = SPluginInfo( GetBase(), GetModuleHandle( PLUGIN_FILENAME ), PLUGIN_FILENAME, m_sPluginsDirectory );
+            m_Plugins[GetName()] = SPluginInfo( GetBase(), GetModuleHandle( PLUGIN_FILENAME ), PLUGIN_FILENAME, m_sPluginsDirectory );
         }
 
         return bRet;
@@ -784,7 +786,7 @@ namespace PluginManager
             char* sTempPath = new char[nPathLen + 1];
             GetDllDirectory( nPathLen + 1, sTempPath );
             sDllDirectory = sTempPath;
-            delete [] sTempPath;
+            delete[] sTempPath;
         }
 
         SetDllDirectory( sAbsPluginDirectory );
@@ -989,7 +991,7 @@ namespace PluginManager
         }
     }
 
-    bool CPluginManager::RegisterTypesPluginRange( int nBeginAtMode, int nEndAtMode, int nFactoryType , bool bUnregister )
+    bool CPluginManager::RegisterTypesPluginRange( int nBeginAtMode, int nEndAtMode, int nFactoryType, bool bUnregister )
     {
         bool bRet = true;
 
@@ -1058,7 +1060,7 @@ namespace PluginManager
             LogAlways( "   Nodes: {%s}", SAFESTR( iface->ListNodes() ) );
             LogAlways( "   GameObjects: {%s}", SAFESTR( iface->ListGameObjects() ) );
             LogAlways( "   Interface: Concrete(%s) Extended(%s)", SAFESTR( iface->GetCurrentConcreteInterfaceVersion() ), SAFESTR( iface->GetCurrentExtendedInterfaceVersion() ) );
-            LogAlways( "   Flags: Unloading(%s) Initialized(%s) FullyInitialized(%s)", BOOLSTR( iface->IsUnloading() ) , BOOLSTR( iface->IsInitialized() ), BOOLSTR( iface->IsFullyInitialized() ) );
+            LogAlways( "   Flags: Unloading(%s) Initialized(%s) FullyInitialized(%s)", BOOLSTR( iface->IsUnloading() ), BOOLSTR( iface->IsInitialized() ), BOOLSTR( iface->IsFullyInitialized() ) );
             LogAlways( "   Module: Madr(%p) BIadr(%p) File(%s) Directory(%s)", ( void* )pluginIter->second.m_hModule, ( void* )iface, SAFESTR( pluginIter->second.m_sFile.c_str() ), SAFESTR( pluginIter->second.m_sDirectory.c_str() ) );
             LogAlways( "   Dump(%s)", SAFESTR( iface->Dump() ) );
         }
@@ -1080,7 +1082,7 @@ namespace PluginManager
 
             if ( iface )
             {
-                LogAlways( "%s: V(%s) C(%s) S(%s) U(%s) I(%s) FI(%s) F(%s) D(%s) M(%p) B(%p)", SAFESTR( iface->GetName() ), SAFESTR( iface->GetVersion() ), SAFESTR( iface->GetCategory() ), SAFESTR( iface->GetStatus() ), BOOLSTR( iface->IsUnloading() ) , BOOLSTR( iface->IsInitialized() ), BOOLSTR( iface->IsFullyInitialized() ), SAFESTR( pluginIter->second.m_sFile.c_str() ), SAFESTR( pluginIter->second.m_sDirectory.c_str() ), ( void* )pluginIter->second.m_hModule, ( void* )iface );
+                LogAlways( "%s: V(%s) C(%s) S(%s) U(%s) I(%s) FI(%s) F(%s) D(%s) M(%p) B(%p)", SAFESTR( iface->GetName() ), SAFESTR( iface->GetVersion() ), SAFESTR( iface->GetCategory() ), SAFESTR( iface->GetStatus() ), BOOLSTR( iface->IsUnloading() ), BOOLSTR( iface->IsInitialized() ), BOOLSTR( iface->IsFullyInitialized() ), SAFESTR( pluginIter->second.m_sFile.c_str() ), SAFESTR( pluginIter->second.m_sDirectory.c_str() ), ( void* )pluginIter->second.m_hModule, ( void* )iface );
             }
 
             else
@@ -1127,7 +1129,7 @@ namespace PluginManager
             return;
         }
 
-        m_StaticInterfaces[ tStaticInterfaceKey( sName, SAFESTR( sVersion ) ) ] = pInterface;
+        m_StaticInterfaces[tStaticInterfaceKey( sName, SAFESTR( sVersion ) )] = pInterface;
 
         LogAlways( "RegisterStaticInterface Name(%s) Version(%s) succeeded", sName, SAFESTR( sVersion ) );
     }

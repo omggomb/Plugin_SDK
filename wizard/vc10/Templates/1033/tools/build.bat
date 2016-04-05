@@ -2,7 +2,7 @@
 
 :: Set project relevant settings
 set VCPROJECT="..\project\[!output PROJECT_NAME_SAFE].vcxproj"
-set VCTOOLS="%VS140COMNTOOLS%..\..\VC\vcvarsall.bat"
+set VCTOOLS="%VS100COMNTOOLS%..\..\VC\vcvarsall.bat"
 
 IF EXIST %VCTOOLS% (
   :: Compile x86
