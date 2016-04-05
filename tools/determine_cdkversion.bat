@@ -1,32 +1,83 @@
 :: This is an prebuilt script part of the Plugin SDK
-::@echo off
+@echo off
 
 set "dynheaderfile=%~dp0..\inc\CDKVersion_generated.tmp"
 set "tempvers=%~dp0tempvers.tmp"
 
+:: CEV 
+:: Taken straight from Editor.bat
+
+:: Adjusted path to be relative to the tools folder this batch file lives in
+set projectcfg=%~dp0..\..\..\project.cfg 
+set binpath=bin\win_x64
+set regkeyname=HKEY_CURRENT_USER\Software\Crytek\CryEngine
+:: ~CEV
+
 if exist "%~dp0..\..\..\Bin64\CrySystem.dll" (
   "%~dp0sigcheck.exe" -n -q "%~dp0..\..\..\Bin64\CrySystem.dll" > "%tempvers%"
+  set detection_Success=true
 )
 
 if exist "%~dp0..\..\..\Bin32\CrySystem.dll" (
   "%~dp0sigcheck.exe" -n -q "%~dp0..\..\..\Bin32\CrySystem.dll" > "%tempvers%"
+  set detection_Success=true
 )
 
 if exist "%~dp0..\..\..\bin\win_x64_release\CrySystem.dll" (
   "%~dp0sigcheck.exe" -n -q "%~dp0..\..\..\bin\win_x64_release\CrySystem.dll" > "%tempvers%"
+  set detection_Success=true
 )
 
 if exist "%~dp0..\..\..\bin\win_x86_release\CrySystem.dll" (
   "%~dp0sigcheck.exe" -n -q "%~dp0..\..\..\bin\win_x86_release\CrySystem.dll" > "%tempvers%"
+  set detection_Success=true
 )
 
 if exist "%~dp0..\..\..\bin\win_x64\CrySystem.dll" (
   "%~dp0sigcheck.exe" -n -q "%~dp0..\..\..\bin\win_x64\CrySystem.dll" > "%tempvers%"
+  set detection_Success=true
 )
 
 if exist "%~dp0..\..\..\bin\win_x86\CrySystem.dll" (
   "%~dp0sigcheck.exe" -n -q "%~dp0..\..\..\bin\win_x86\CrySystem.dll" > "%tempvers%"
+  set detection_Success=true
 )
+
+:: CEV
+:: Taken straight from Editor.bat
+if not defined detection_Success (
+	
+	echo Assuming CEV installtion
+	
+	if not exist "%projectcfg%" (
+		1>&2 echo "Error: %projectcfg% not found!"
+		pause
+		exit /b 1
+	)
+
+	for /F "tokens=*" %%I in (%projectcfg%) do set %%I
+
+	if not defined engine_version (
+		1>&2 echo "Error: no engine_version entry found in %projectcfg%!"
+		pause
+		exit /b 1
+	)
+
+	for /F "usebackq tokens=2,* skip=2" %%L in (
+		`reg query "%regkeyname%" /v %engine_version%`
+	) do set "engine_root=%%M"
+
+	if defined engine_root (
+		if exist "%engine_root%\%binpath%\CrySystem.dll" (
+			"%~dp0sigcheck.exe" -n -q "%engine_root%\bin\win_x64\CrySystem.dll" > "%tempvers%"
+		)
+	)
+
+	if not defined engine_root (
+		echo "Could not find CEV root, either you're using an older version or the regisitry keys are set incorrectly"
+	)
+)
+:: ~CEV
 
 for /f "usebackq tokens=1-3 delims=, " %%A in ("%tempvers%") do (
   echo Plugin SDK detected CryEngine %%~A.%%~B.%%~C
